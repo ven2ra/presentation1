@@ -40,44 +40,34 @@ const config: Config = {
           "system-ui",
           "sans-serif",
         ],
+        mono: [
+          "var(--font-mono)",
+          "ui-monospace",
+          "SFMono-Regular",
+          "monospace",
+        ],
       },
       borderRadius: {
-        xl: "16px",
-        "2xl": "20px",
-        "3xl": "24px",
+        xl: "14px",
+        "2xl": "18px",
+        "3xl": "22px",
       },
       boxShadow: {
-        card: "0 4px 24px -4px rgba(15, 23, 42, 0.08)",
-        "card-hover": "0 12px 40px -8px rgba(79, 70, 229, 0.18)",
-        glow: "0 0 60px -10px rgba(124, 58, 237, 0.45)",
+        card: "0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 20px -12px rgba(15, 23, 42, 0.10)",
+        "card-hover": "0 1px 2px rgba(15, 23, 42, 0.06), 0 16px 32px -12px rgba(15, 23, 42, 0.16)",
       },
       backgroundImage: {
-        "grid-pattern":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+        "dot-grid": "radial-gradient(rgba(15,23,42,0.14) 1px, transparent 1px)",
+        "dot-grid-dark": "radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px)",
       },
       keyframes: {
-        "gradient-move": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-        "float-slow": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-14px)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.5" },
-          "50%": { opacity: "1" },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
-        "gradient-move": "gradient-move 12s ease infinite",
-        "float-slow": "float-slow 6s ease-in-out infinite",
-        shimmer: "shimmer 2.5s linear infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "fade-up": "fade-up 0.6s cubic-bezier(0.16,1,0.3,1) both",
       },
     },
   },

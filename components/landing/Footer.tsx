@@ -1,5 +1,3 @@
-import { Headset } from "lucide-react";
-
 const columns = [
   {
     title: "Продукт",
@@ -24,11 +22,11 @@ export function Footer() {
       <div className="container">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div className="max-w-xs">
-            <a href="#hero" className="flex items-center gap-2 text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-light">
-                <Headset className="h-4 w-4 text-white" aria-hidden />
+            <a href="#hero" className="flex items-center gap-2.5 text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 text-sm font-bold">
+                О
               </span>
-              <span className="text-sm font-bold">Единая&nbsp;среда</span>
+              <span className="text-sm font-semibold tracking-tight">Отклик</span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-white/40">
               Система управления обращениями, звонками и чатами для сервисных
@@ -63,7 +61,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/35 sm:flex-row">
-          <p>© {new Date().getFullYear()} Единая рабочая среда. Все права защищены.</p>
+          <p>© {new Date().getFullYear()} Отклик. Все права защищены.</p>
           <p>Сделано для сервисных команд, которые растут.</p>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Headset, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,26 +25,26 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
         scrolled
-          ? "bg-dark/80 backdrop-blur-xl border-b border-white/10"
-          : "bg-transparent"
+          ? "border-b border-white/10 bg-dark/85 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       )}
     >
       <nav
         aria-label="Основная навигация"
-        className="container flex h-16 items-center justify-between md:h-20"
+        className="container flex h-16 items-center justify-between"
       >
-        <a href="#hero" className="flex items-center gap-2 text-white">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light shadow-glow">
-            <Headset className="h-5 w-5 text-white" aria-hidden />
+        <a href="#hero" className="flex items-center gap-2.5 text-white">
+          <span className="flex h-7 w-7 items-center justify-center rounded-md border border-white/15 text-sm font-bold">
+            О
           </span>
-          <span className="text-base font-bold tracking-tight">
-            Единая&nbsp;среда
+          <span className="text-sm font-semibold tracking-tight">
+            Отклик
           </span>
         </a>
 
@@ -53,7 +53,7 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+                className="text-sm text-white/60 transition-colors hover:text-white"
               >
                 {link.label}
               </a>
@@ -74,7 +74,7 @@ export function Navbar() {
           className="text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
@@ -83,7 +83,7 @@ export function Navbar() {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          className="border-t border-white/10 bg-dark/95 backdrop-blur-xl md:hidden"
+          className="border-t border-white/10 bg-dark md:hidden"
         >
           <ul className="container flex flex-col gap-1 py-4">
             {links.map((link) => (
@@ -91,7 +91,7 @@ export function Navbar() {
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-sm font-medium text-white/80 hover:bg-white/5 hover:text-white"
+                  className="block rounded-md px-3 py-2.5 text-sm text-white/70 hover:bg-white/5 hover:text-white"
                 >
                   {link.label}
                 </a>
