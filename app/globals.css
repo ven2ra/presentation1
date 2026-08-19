@@ -2,50 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #fafaf9;
-  color: #0f172a;
+  background: #f4eedf;
+  color: #141311;
 }
 
 ::selection {
-  background: #7c3aed;
-  color: #ffffff;
+  background: #d7f23a;
+  color: #141311;
 }
 
-/* Мягкий кастомный скроллбар */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f4eedf;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(79, 70, 229, 0.35);
-  border-radius: 999px;
+  background: #141311;
+  border: 3px solid #f4eedf;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-.bg-noise {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
+/* Зернистая текстура — заменяет типовой размытый glow-фон */
+.bg-grain {
+  position: relative;
+}
+.bg-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 .mask-fade-x {
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 8%,
-    black 92%,
+    black 6%,
+    black 94%,
     transparent 100%
   );
+}
+
+/* Жёсткая обводка + фиксированное смещение тени, сдвигается при нажатии/наведении */
+.press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 0 #141311 !important;
 }

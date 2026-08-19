@@ -11,73 +11,61 @@ const config: Config = {
       center: true,
       padding: "1.5rem",
       screens: {
-        "2xl": "1280px",
+        "2xl": "1200px",
       },
     },
     extend: {
       colors: {
-        background: "#FAFAF9",
-        surface: "#F8F7F4",
-        foreground: "#0F172A",
-        muted: "#64748B",
-        primary: {
-          DEFAULT: "#4F46E5",
-          light: "#7C3AED",
-          foreground: "#FFFFFF",
+        // Тёплая бумага вместо стерильного белого/gray-50
+        paper: "#F4EEDF",
+        "paper-2": "#EAE1C9",
+        ink: {
+          DEFAULT: "#141311",
+          soft: "#41403A",
         },
-        success: {
-          DEFAULT: "#10B981",
-        },
-        dark: {
-          DEFAULT: "#0B0F19",
-          surface: "#11172A",
-        },
+        // Плоские, насыщенные акценты — без единого градиента
+        lime: "#D7F23A",
+        coral: "#FF5B32",
+        cobalt: "#2A3EEB",
+        grape: "#7A3BFF",
       },
       fontFamily: {
-        sans: [
-          "var(--font-sans)",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        display: ["var(--font-display)", "ui-sans-serif", "sans-serif"],
+        sans: ["var(--font-body)", "ui-sans-serif", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
-        xl: "16px",
-        "2xl": "20px",
-        "3xl": "24px",
+        DEFAULT: "10px",
+        lg: "14px",
+        xl: "18px",
       },
       boxShadow: {
-        card: "0 4px 24px -4px rgba(15, 23, 42, 0.08)",
-        "card-hover": "0 12px 40px -8px rgba(79, 70, 229, 0.18)",
-        glow: "0 0 60px -10px rgba(124, 58, 237, 0.45)",
-      },
-      backgroundImage: {
-        "grid-pattern":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+        // Жёсткие смещённые тени вместо мягких blur-теней
+        brut: "5px 5px 0 0 #141311",
+        "brut-sm": "3px 3px 0 0 #141311",
+        "brut-lg": "9px 9px 0 0 #141311",
+        "brut-coral": "5px 5px 0 0 #FF5B32",
+        "brut-lime": "5px 5px 0 0 #D7F23A",
+        "brut-paper": "5px 5px 0 0 #F4EEDF",
       },
       keyframes: {
-        "gradient-move": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        "float-slow": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-14px)" },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.5" },
-          "50%": { opacity: "1" },
+        wipe: {
+          "0%": { clipPath: "inset(0 100% 0 0)" },
+          "100%": { clipPath: "inset(0 0 0 0)" },
         },
       },
       animation: {
-        "gradient-move": "gradient-move 12s ease infinite",
-        "float-slow": "float-slow 6s ease-in-out infinite",
-        shimmer: "shimmer 2.5s linear infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        marquee: "marquee 22s linear infinite",
+        "spin-slow": "spin-slow 14s linear infinite",
+        wipe: "wipe 0.7s cubic-bezier(0.65,0,0.35,1) forwards",
       },
     },
   },

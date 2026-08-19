@@ -1,5 +1,3 @@
-import { Headset } from "lucide-react";
-
 const columns = [
   {
     title: "Продукт",
@@ -20,29 +18,28 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-dark py-14 text-white/60">
+    <footer className="border-t-2 border-ink bg-ink pt-16 text-paper/70">
       <div className="container">
-        <div className="flex flex-col justify-between gap-10 md:flex-row">
+        <div className="flex flex-col justify-between gap-10 border-b-2 border-paper/15 pb-14 md:flex-row">
           <div className="max-w-xs">
-            <a href="#hero" className="flex items-center gap-2 text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-light">
-                <Headset className="h-4 w-4 text-white" aria-hidden />
+            <a href="#hero" className="flex items-center gap-3 text-paper">
+              <span className="flex h-8 w-8 -rotate-3 items-center justify-center border-2 border-lime bg-ink font-display text-sm font-black text-lime">
+                ЕС
               </span>
-              <span className="text-sm font-bold">Единая&nbsp;среда</span>
+              <span className="font-display text-sm font-bold uppercase tracking-tight">
+                Единая среда
+              </span>
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-white/40">
+            <p className="mt-4 text-sm leading-relaxed text-paper/50">
               Система управления обращениями, звонками и чатами для сервисных
               команд, которые ценят время клиентов и своё.
             </p>
           </div>
 
-          <nav
-            aria-label="Ссылки футера"
-            className="grid grid-cols-2 gap-10 sm:grid-cols-2"
-          >
+          <nav aria-label="Ссылки футера" className="grid grid-cols-2 gap-10">
             {columns.map((col) => (
               <div key={col.title}>
-                <h3 className="text-xs font-semibold uppercase tracking-widest text-white/40">
+                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-lime">
                   {col.title}
                 </h3>
                 <ul className="mt-4 space-y-3">
@@ -50,7 +47,7 @@ export function Footer() {
                     <li key={`${col.title}-${i}`}>
                       <a
                         href={link.href}
-                        className="text-sm text-white/60 transition-colors hover:text-white"
+                        className="text-sm text-paper/60 transition-colors hover:text-paper"
                       >
                         {link.label}
                       </a>
@@ -62,7 +59,14 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/35 sm:flex-row">
+        <p
+          aria-hidden
+          className="select-none py-4 text-center font-display text-[15vw] font-black uppercase leading-none tracking-tighter text-transparent [-webkit-text-stroke:1.5px_#F4EEDF33] sm:text-[8rem]"
+        >
+          Единая среда
+        </p>
+
+        <div className="flex flex-col items-center justify-between gap-4 border-t-2 border-paper/15 py-6 text-xs text-paper/40 sm:flex-row">
           <p>© {new Date().getFullYear()} Единая рабочая среда. Все права защищены.</p>
           <p>Сделано для сервисных команд, которые растут.</p>
         </div>

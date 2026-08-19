@@ -1,70 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
+import { ArrowUpRight, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BackgroundBeams } from "@/components/ui/background-beams";
-import { VapourText } from "@/components/ui/vapour-text";
+import { Marquee } from "@/components/ui/marquee";
+import { Reveal } from "@/components/ui/reveal";
+
+const tickerItems = [
+  "ОБРАЩЕНИЯ",
+  "ЗВОНКИ",
+  "ЧАТЫ",
+  "ДАШБОРДЫ",
+  "ИСТОРИЯ",
+  "БЕЗ ХАОСА",
+];
 
 export function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-dark pt-28 pb-24"
-    >
-      {/* Анимированный градиентный фон */}
+    <section id="hero" className="relative overflow-hidden bg-ink pt-[68px]">
+      {/* Halftone-точки вместо блюр-glow */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#1e1440_0%,_#0B0F19_55%)]"
+        className="absolute inset-0 bg-[length:18px_18px] opacity-[0.18]"
+        style={{ backgroundImage: "radial-gradient(circle, #F4EEDF 1.4px, transparent 1.4px)" }}
+      />
+      {/* Плоская фигура — без размытия */}
+      <div
+        aria-hidden
+        className="absolute -right-24 top-16 h-[420px] w-[420px] rotate-12 border-2 border-lime/40 bg-coral/90 sm:h-[520px] sm:w-[520px]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(120deg,#4F46E5_0%,#7C3AED_35%,#10B981_70%,#4F46E5_100%)] bg-[length:300%_300%] opacity-20 animate-gradient-move"
-      />
-      <div aria-hidden className="absolute inset-0 bg-grid-pattern bg-[size:64px_64px]" />
-      <BackgroundBeams />
-
-      {/* Плавающие сферы-акценты */}
-      <motion.div
-        aria-hidden
-        className="absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-primary/30 blur-[100px] animate-float-slow"
-      />
-      <motion.div
-        aria-hidden
-        className="absolute -right-24 bottom-1/4 h-96 w-96 rounded-full bg-success/20 blur-[120px] animate-float-slow"
-        style={{ animationDelay: "1.5s" }}
+        className="absolute -left-16 bottom-0 h-64 w-64 -rotate-6 border-2 border-cobalt bg-grape/80"
       />
 
-      <div className="container relative z-10">
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+      <div className="container relative z-10 pb-16 pt-20 sm:pt-28">
+        <div className="max-w-4xl">
           <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 10, rotate: -2 }}
+            animate={{ opacity: 1, y: 0, rotate: -2 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8 inline-block border-2 border-lime bg-ink px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-lime"
           >
-            <Sparkles className="h-3.5 w-3.5 text-primary-light" aria-hidden />
-            Единое рабочее пространство для сервисных команд
+            Единая среда для сервисных команд
           </motion.span>
 
-          <h1 className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
-            <VapourText text="Единая рабочая среда для" />
+          <h1 className="text-balance font-display text-[clamp(2.5rem,9vw,5rem)] font-extrabold uppercase leading-[0.95] tracking-tight text-paper">
+            <Reveal delay={0.1}>Единая рабочая</Reveal>
             <br />
-            <motion.span
-              initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-block bg-gradient-to-r from-primary-light via-fuchsia-400 to-success bg-clip-text text-transparent"
-            >
-              обращений, звонков и чатов
-            </motion.span>
+            <Reveal delay={0.25}>среда для</Reveal>{" "}
+            <Reveal delay={0.4} className="relative">
+              <span className="relative z-10 -rotate-1 bg-lime px-2 text-ink">
+                обращений,
+              </span>
+            </Reveal>
+            <br />
+            <Reveal delay={0.5} className="relative">
+              <span className="relative z-10 rotate-1 bg-coral px-2 text-ink">
+                звонков и чатов
+              </span>
+            </Reveal>
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1 }}
-            className="mt-6 max-w-2xl text-balance text-base text-white/60 sm:text-lg"
+            transition={{ duration: 0.5, delay: 0.75 }}
+            className="mt-8 max-w-xl text-balance font-sans text-base leading-relaxed text-paper/70 sm:text-lg"
           >
             Соберите обращения клиентов, входящие звонки и переписки в чатах
             в одном интерфейсе. Меньше переключений между системами — больше
@@ -75,39 +77,27 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.3 }}
-            className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
-            <Button size="lg" variant="primary">
+            <Button size="lg" variant="accent">
               Запросить демо
-              <ArrowRight className="h-4 w-4" aria-hidden />
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
             </Button>
             <a
               href="#features"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+              className="press inline-flex h-14 items-center justify-center gap-2 rounded-lg border-2 border-paper px-8 font-display text-base font-bold uppercase tracking-wide text-paper shadow-[5px_5px_0_0_#F4EEDF] transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[9px_9px_0_0_#F4EEDF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               <PlayCircle className="h-4 w-4" aria-hidden />
-              Посмотреть возможности
+              Возможности
             </a>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-xs uppercase tracking-widest text-white/35"
-          >
-            <span>Обращения</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
-            <span>Звонки</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
-            <span>Чаты</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
-            <span>Дашборды</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
-            <span>История</span>
-          </motion.div>
         </div>
+      </div>
+
+      {/* Тикер-лента — жёсткая граница сверху и снизу, никаких градиентов */}
+      <div className="relative z-10 border-y-2 border-ink bg-lime py-3 font-display text-sm font-bold uppercase tracking-widest text-ink">
+        <Marquee items={tickerItems} />
       </div>
     </section>
   );

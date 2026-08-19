@@ -3,18 +3,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "press inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border-2 border-ink font-display text-sm font-bold uppercase tracking-wide transition-transform duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:pointer-events-none disabled:opacity-50 hover:-translate-x-0.5 hover:-translate-y-0.5",
   {
     variants: {
       variant: {
-        primary:
-          "bg-gradient-to-r from-primary to-primary-light text-white shadow-[0_8px_30px_-8px_rgba(79,70,229,0.6)] hover:shadow-[0_12px_40px_-6px_rgba(124,58,237,0.7)] hover:-translate-y-0.5",
+        solid: "bg-ink text-paper shadow-brut hover:shadow-brut-lg",
+        accent: "bg-lime text-ink shadow-brut hover:shadow-brut-lg",
+        coral: "bg-coral text-paper shadow-brut hover:shadow-brut-lg",
         outline:
-          "border border-white/20 text-white bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:-translate-y-0.5",
+          "border-paper bg-transparent text-paper shadow-[5px_5px_0_0_#F4EEDF] hover:shadow-[9px_9px_0_0_#F4EEDF]",
         ghost:
-          "border border-foreground/10 text-foreground bg-white hover:bg-foreground/5 hover:-translate-y-0.5",
-        light:
-          "bg-white text-foreground border border-foreground/10 hover:bg-foreground/5 hover:-translate-y-0.5",
+          "border-ink bg-paper text-ink shadow-brut hover:shadow-brut-lg",
       },
       size: {
         default: "h-12 px-6 py-3",
@@ -23,7 +22,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "primary",
+      variant: "solid",
       size: "default",
     },
   }

@@ -18,8 +18,7 @@ interface Feature {
   icon: LucideIcon;
   title: string;
   description: string;
-  span?: string;
-  accent?: "primary" | "success";
+  tone: "paper" | "ink" | "lime" | "coral";
 }
 
 const features: Feature[] = [
@@ -28,127 +27,142 @@ const features: Feature[] = [
     title: "Единая карточка обращения",
     description:
       "Все данные по клиенту, каналу и статусу собраны в одной карточке — не нужно искать контекст в разных системах.",
-    span: "md:col-span-2",
-    accent: "primary",
+    tone: "ink",
   },
   {
     icon: PhoneCall,
     title: "Звонки в общем потоке",
     description:
       "Входящие и исходящие звонки фиксируются рядом с обращениями и чатами, с записью и привязкой к клиенту.",
-    accent: "success",
+    tone: "paper",
   },
   {
     icon: MessageSquareText,
     title: "Чаты без переключений",
     description:
       "Переписки из всех каналов приходят в один инбокс, с быстрыми шаблонами ответов и статусами прочтения.",
-    accent: "primary",
+    tone: "paper",
   },
   {
     icon: ListChecks,
     title: "Блок «Ближайшие»",
     description:
       "Приоритетные задачи и дедлайны всегда на виду — сотрудник видит, что делать в первую очередь.",
-    accent: "success",
+    tone: "lime",
   },
   {
     icon: History,
     title: "Полная история взаимодействий",
     description:
       "Каждое обращение хранит хронологию: кто, когда и что делал — удобно для передачи дел и разбора спорных ситуаций.",
-    span: "md:col-span-2",
-    accent: "primary",
+    tone: "paper",
   },
   {
     icon: LayoutDashboard,
     title: "Наглядный дашборд",
     description:
       "Руководитель видит нагрузку команды, сроки и узкие места в реальном времени, без ручных отчётов.",
-    accent: "success",
+    tone: "coral",
   },
   {
     icon: Bell,
     title: "Умные уведомления",
     description:
       "Система напоминает о просроченных задачах и новых сообщениях — ничего не теряется в потоке обращений.",
-    accent: "primary",
+    tone: "paper",
   },
   {
     icon: ShieldCheck,
     title: "Прозрачность и контроль",
     description:
       "Каждое действие фиксируется автоматически, что снижает число ошибок и упрощает контроль качества работы.",
-    accent: "success",
+    tone: "ink",
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] },
-  }),
+const toneClasses: Record<Feature["tone"], string> = {
+  paper: "bg-paper text-ink",
+  ink: "bg-ink text-paper",
+  lime: "bg-lime text-ink",
+  coral: "bg-coral text-paper",
+};
+
+const numberToneClasses: Record<Feature["tone"], string> = {
+  paper: "text-ink/15",
+  ink: "text-paper/20",
+  lime: "text-ink/20",
+  coral: "text-paper/25",
 };
 
 export function BentoFeatures() {
   return (
-    <section id="features" className="relative bg-surface py-24 sm:py-32">
+    <section id="features" className="relative bg-paper-2 py-24 sm:py-32">
       <div className="container">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-            С первого дня
-          </span>
-          <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Что получает отдел уже с первого дня
-          </h2>
-          <p className="mt-4 text-balance text-muted">
+        <div className="mb-16 flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-xl">
+            <span className="mb-3 inline-block -rotate-1 border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-ink">
+              С первого дня
+            </span>
+            <h2 className="text-balance font-display text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-ink sm:text-4xl">
+              Что получает отдел
+            </h2>
+          </div>
+          <p className="max-w-sm text-balance font-sans text-sm leading-relaxed text-ink-soft">
             Не отдельные модули, а единая среда: обращения, звонки, чаты и
             аналитика работают вместе и не требуют ручной синхронизации.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-[2px] border-2 border-ink bg-ink sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.title}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                whileHover={{ y: -6 }}
+                transition={{ duration: 0.4, delay: (i % 4) * 0.06 }}
                 className={cn(
-                  "group relative overflow-hidden rounded-2xl border border-foreground/5 bg-white p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover",
-                  feature.span
+                  "group relative flex min-h-[220px] flex-col justify-between p-6 transition-colors",
+                  toneClasses[feature.tone]
                 )}
               >
-                <div
+                <span
                   aria-hidden
                   className={cn(
-                    "absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-30",
-                    feature.accent === "success" ? "bg-success" : "bg-primary"
+                    "pointer-events-none absolute right-3 top-2 select-none font-display text-6xl font-black",
+                    numberToneClasses[feature.tone]
                   )}
-                />
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
                 <div
                   className={cn(
-                    "relative mb-4 flex h-11 w-11 items-center justify-center rounded-xl",
-                    feature.accent === "success"
-                      ? "bg-success/10 text-success"
-                      : "bg-primary/10 text-primary"
+                    "relative mb-5 flex h-11 w-11 items-center justify-center border-2",
+                    feature.tone === "ink" || feature.tone === "coral"
+                      ? "border-paper"
+                      : "border-ink"
                   )}
                 >
                   <Icon className="h-5 w-5" aria-hidden />
                 </div>
-                <h3 className="relative text-lg font-semibold text-foreground">
-                  {feature.title}
-                </h3>
-                <p className="relative mt-2 text-sm leading-relaxed text-muted">
-                  {feature.description}
-                </p>
+                <div className="relative">
+                  <h3 className="font-display text-base font-bold uppercase leading-snug">
+                    {feature.title}
+                  </h3>
+                  <p
+                    className={cn(
+                      "mt-2 text-sm leading-relaxed",
+                      feature.tone === "ink" || feature.tone === "coral"
+                        ? "opacity-75"
+                        : "text-ink-soft"
+                    )}
+                  >
+                    {feature.description}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
