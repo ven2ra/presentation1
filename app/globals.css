@@ -63,3 +63,19 @@ body {
   transform: translate(3px, 3px);
   box-shadow: 2px 2px 0 0 #141311 !important;
 }
+
+/* Вертикальный бесконечный поток карточек в ImageStreamHero */
+@keyframes stream-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="stream-y"] {
+    animation: none !important;
+  }
+}
